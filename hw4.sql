@@ -1,4 +1,4 @@
--- SELECT 'ФИО: Чуваев Павел Сергеевич';
+SELECT 'ФИО: Чуваев Павел Сергеевич';
 
 CREATE TABLE IF NOT EXISTS movie.content_genres (
     movieid INT, 
