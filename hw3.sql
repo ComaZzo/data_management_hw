@@ -1,3 +1,5 @@
+SELECT 'ФИО: Чуваев Павел Сергеевич';
+
 SELECT userid, movieid,
     (rating - MIN(rating) OVER (PARTITION BY userId))/((MAX(rating) OVER (PARTITION BY userId))-(MIN(rating) OVER (PARTITION BY userid))) AS rating_deviance_simplex,
     AVG(rating) OVER(PARTITION BY userid) as avg_rating
