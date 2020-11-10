@@ -83,15 +83,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         ]
         """
         user_id = self.path.split('/')[-1]
-        logging.info(f'Поступил запрос по пользователю user_id={user_id}')
-        redis_profile_key = f'not avg profile:{user_id}'
+        logging.info(f'Поступил запрос по рейтингам пользователя user_id={user_id}')
+        redis_profile_key = f'user_rate:{user_id}'
         # проверяем наличие объекта в Redis-кеше
         if redis_interactor.is_cached(redis_profile_key):
-            logging.info(f'Профиль пользователя user_id={user_id} присутствует в кеше')
+            logging.info(f'Рейтинги пользователя user_id={user_id} присутствуют в кеше')
             response = redis_interactor.get_data(redis_profile_key)
         # если ключ отcутствует в кеше - выполняем "тяжёлый" SQL-запрос в Postgres
         else:
-            logging.info(f'Профиль пользователя user_id={user_id} отсутствует в кеше, выполняем запрос к Postgres')
+            logging.info(f'Рейтинги пользователя user_id={user_id} отсутствуют в кеше, выполняем запрос к Postgres')
             user_rates = [[]]
             try:
                 user_rates = postgres_interactor.get_sql_result(
