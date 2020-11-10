@@ -40,7 +40,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         elif self.path.startswith('/user/profile'):
             response = self.get_user_profile()
 
-        # Реализуем API /user/watchhistory/user_id
+        # Реализуем API /rates/user_id
         elif self.path.startswith('/rates'):
             response = self.get_user_watch_history()
 
