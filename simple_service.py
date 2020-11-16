@@ -105,7 +105,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             response = {}
             for i in range(len(user_rates)):
                 response[i] = {"movie_id": user_rates[i][0], "rating": user_rates[i][1], "timestamp": user_rates[i][2]}
-            logging.info(f'Сохраняем профиль пользователя user_id={user_id} в Redis-кеш')
+            logging.info(f'Сохраняем рейтинги пользователя user_id={user_id} в Redis-кеш')
             redis_interactor.set_data(redis_profile_key, response)
         return response
 
