@@ -76,13 +76,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         """
         Для каждого переданного user_id API должен возвращать историю оценок, которые ставил этот user_id в виде
 
-        [
-            {"movie_id": 4119470, "rating": 4, "timestamp": "2019-09-03 10:00:00"},
-            {"movie_id": 5691170, "rating": 2, "timestamp": "2019-09-05 13:23:00"},
-            {"movie_id": 3341191, "rating": 5, "timestamp": "2019-09-08 16:40:00"}
-        ]
+        {
+            "0": {"movie_id": 4119470, "rating": 4.5, "timestamp": "2019-09-03 10:00:00"},
+            "1": {"movie_id": 5691170, "rating": 2.0, "timestamp": "2019-09-05 13:23:00"},
+            "2": {"movie_id": 3341191, "rating": 5.0, "timestamp": "2019-09-08 16:40:00"}
+        }
         """
-        user_id = self.path.split('/')[-1]
+        user_id = self.path.split('/')[-1].split('?')[0]
         logging.info(f'Поступил запрос по рейтингам пользователя user_id={user_id}')
         redis_profile_key = f'user_rate:{user_id}'
         # проверяем наличие объекта в Redis-кеше
